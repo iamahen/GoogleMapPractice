@@ -20,21 +20,39 @@ API Course, Lesson 1 -->
          zoom: 14
        });
        // Create a single latLng literal object.
-       var singleLatLng = {lat: 40.74135, lng: -73.99802};
+       var tribeca = {lat: 40.74135, lng: -73.99802};
        // TODO: Create a single marker appearing on initialize -
        // Create it with the position of the singleLatLng,
        // on the map, and give it your own title!
+         marker_tribeca = new google.maps.Marker(
+             {
+                 position: tribeca,
+                 map: map,
+                 title: 'Tribeta'
+             }
+         );
 
        // TODO: create a single infowindow, with your own content.
        // It must appear on the marker
+         info = new google.maps.InfoWindow(
+             {
+                 content: 'Hello! Tribeca!'
+             }
+         );
 
        // TODO: create an EVENT LISTENER so that the infowindow opens when
        // the marker is clicked!
+         marker_tribeca.addListener(
+             'click',
+             function(){
+                 info.open(map, marker_tribeca);
+             }
+         );
      }
    </script>
    <!--TODO: Insert your API Key in the below call to load the API.-->
    <script async defer
-     src="https://maps.googleapis.com/maps/api/js?v=3&key=XXX&callback=initMap">
+     src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDzUy_lZjwsDMaAfCns7toKdbkJ0UNHxMI&callback=initMap">
    </script>
  </body>
 </html>
