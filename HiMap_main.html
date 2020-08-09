@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hi!Map!</title>
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map { height: 100%; }
+    </style>
+</head>
+
+<body>
+<div id="map"></div>
+<script type="text/javascript">
+    // Create a map variable
+    var map;
+    // Function to initialize the map within the map div
+    function initMap() {
+        // Create a single latLng literal object.
+        var tribeca = {lat: 40.74135, lng: -73.99802};
+        var berlin = { lat: 52.503578, lng: 13.384491};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: berlin,
+            zoom: 14
+        });
+
+        // TODO: Create a single marker appearing on initialize -
+        // Create it with the position of the singleLatLng,
+        // on the map, and give it your own title!
+        var marker_icon = {
+            url: 'content/HiMap_AronAhen.PNG',
+            scaledSize: new google.maps.Size(100, 100), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0,0)  // anchor
+        };
+        var marker_tribeca = new google.maps.Marker(
+            {
+                map: map,
+                position: berlin,
+                title: 'Berlin',
+                icon: marker_icon,
+                animation: google.maps.Animation.DROP
+            }
+        );
+
+        // TODO: create a single infowindow, with your own content.
+        // It must appear on the marker
+        info_tribeca = new google.maps.InfoWindow(
+            {
+                content: 'Hello! Berlin!'
+            }
+        );
+
+        // TODO: create an EVENT LISTENER so that the infowindow opens when
+        // the marker is clicked!
+        marker_tribeca.addListener(
+            'click',
+            function(){
+                info_tribeca.open(map, marker_tribeca);
+            }
+        );
+    }
+</script>
+<!--TODO: Insert your API Key in the below call to load the API.-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDzUy_lZjwsDMaAfCns7toKdbkJ0UNHxMI&callback=initMap">
+</script>
+
+</body>
+</html>
