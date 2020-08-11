@@ -11,9 +11,10 @@
 
 <body>
 <div id="map"></div>
+<script type="text/javascript" src="HiMap_styles.js"></script>
 <script type="text/javascript">
     // Locations --Travel in 2013(part1)
-    locations = [
+    const locations = [
         { title: 'Berlin', gps: {lat: 52.503578, lng: 13.384491}},
         { title: 'Leipzig', gps: {lat: 51.338375, lng: 12.372342}},
         { title: 'Dresden', gps: {lat: 51.217784, lng: 13.706641}},
@@ -38,7 +39,8 @@
         var berlin = { lat: 52.503578, lng: 13.384491};
         map = new google.maps.Map(document.getElementById('map'), {
             center: berlin,
-            zoom: 14
+            zoom: 14,
+            styles: getHiMapStyle('COOL_GREY')
         });
         var bounds = new google.maps.LatLngBounds();
 
@@ -53,7 +55,7 @@
         // Create a single marker appearing on initialize -
         // Create it with the position of the singleLatLng,
         // on the map, and give it your own title!
-        icon_size = 70;
+        var icon_size = 70;
         var marker_icon = {
             url: 'content/HiMap_AronAhen.PNG',
             scaledSize: new google.maps.Size(icon_size, icon_size), // scaled size
@@ -62,7 +64,6 @@
         };
 
         var city_markers = [];
-        var city_infos = [];
         for( var i = 0; i<locations.length; i++ )
         {
             var position = locations[i].gps;
